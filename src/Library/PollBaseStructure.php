@@ -18,7 +18,7 @@ class PollBaseStructure
     ];
 
 
-    public function Complited(?User $user)
+    public function Complited(?User $user, array $data)
     {
 
         return redirect()->route("home")->withErrors('Опрос пройден!');

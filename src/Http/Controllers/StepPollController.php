@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class StepPollController extends Controller
 {
- 
+
     /**
      * @param $name
      * @return PollBaseStructure|null
@@ -72,8 +72,11 @@ class StepPollController extends Controller
 
         if ($isError) return ResponseApi::Error($isError);
 
+        $data = $request->toArray();
+        unset($data['_token']);
+        unset($data['myStepNumber']);
 
-        return $poll->Complited(Auth::user() ?? null);
+        return $poll->Complited(Auth::user() ?? null, $data);
     }
 
 

@@ -48,7 +48,7 @@ class SteppollServiceProvider extends ServiceProvider
         $js_path = __DIR__ . '/../copy/js';
         if (file_exists($js_path)) {
             $this->publishes([
-                $js_path => public_path('js/steppoll'),
+                $js_path => public_path('js'),
             ], 'public');
         }
 

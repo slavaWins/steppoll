@@ -11,6 +11,6 @@
             display: block;
         }
     </style>
-    @include('step-poll.render', ['poll'=>$poll])
+    @include('steppoll::render', ['poll'=>$poll])
 @endsection
 
