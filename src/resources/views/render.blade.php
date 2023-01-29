@@ -1,10 +1,9 @@
 @php
 
-    use App\Contracts\StepPoll\PollBaseStructure;
+    use Steppoll\Library\PollBaseStructure;
 
-    /** @var PollBaseStructure $poll */
+        /** @var PollBaseStructure $poll */
 
-   $poll= new \App\Polls\ExamplePoll();
 
 @endphp
 

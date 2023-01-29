@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\StepPoll;
+namespace Steppoll\Library;
 
 use App\Models\User;
 use MrProperter\Library\PropertyBuilderStructure;
@@ -9,8 +9,6 @@ use MrProperter\Models\MPModel;
 
 class PollBaseStructure
 {
-
-    public $name = "Создание проекта";
     public int $stepCount = 3;
 
     public array $titles = [
