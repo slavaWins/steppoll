@@ -68,6 +68,13 @@ class StepPollController extends Controller
         if (!$poll) return ResponseApi::Error("Error poll id");
 
 
+        $isCan = $poll->IsCan(Auth::user());
+        if ($isCan === true) {
+
+        } else {
+            return redirect()->route("home")->withErrors($isCan);
+        }
+
         $isError = self::ValidatePoll($poll, 0, $request->toArray(), true);
 
         if ($isError) return ResponseApi::Error($isError);
@@ -101,6 +108,13 @@ class StepPollController extends Controller
     {
         $poll = self::GetPollByClass($stepClass);
         if (!$poll) return redirect()->back();
+
+        $isCan = $poll->IsCan(Auth::user());
+        if ($isCan === true) {
+
+        } else {
+            return redirect()->route("home")->withErrors($isCan);
+        }
 
         return view('step-poll.page', compact(['poll']));
     }

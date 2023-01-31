@@ -18,6 +18,13 @@ class PollBaseStructure
     ];
 
 
+
+    public function IsCan(?User $user)
+    {
+        if(!$user)return "Доступно только для пользователей";
+        return true;
+    }
+
     public function Complited(?User $user, array $data)
     {
 
