@@ -25,6 +25,7 @@ StepPoll.GetFormDataCurrentStep = function () {
 }
 
 
+
 StepPoll.GetFormDataAllSteps = function () {
     var data = {};
 
@@ -50,18 +51,7 @@ StepPoll.NextStep = function () {
 
     var url = '/poll/validate/' + pollId;
 
-    if (StepPoll.step == StepPoll.stepCount - 1) {
-        console.log("LAST STEP");
 
-        $('#formFinal').hide();
-        $('#formFinal').append($('.stepPollContainer input'));
-        $('#formFinal').append($('.stepPollContainer select'));
-        $('#formFinal').append($('.stepPollContainer checkbox'));
-        $('#formFinal').append($('.stepPollContainer radio'));
-        $('#formFinal').submit();
-        return;
-
-    }
 
     EasyApi.Post(url, data, function (response, error) {
         if (error) {
@@ -70,6 +60,20 @@ StepPoll.NextStep = function () {
             $('.alertPoll').html(error);
             return;
         }
+
+
+        if (StepPoll.step == StepPoll.stepCount - 1) {
+            console.log("LAST STEP");
+
+            $('#formFinal').hide();
+            $('#formFinal').append($('.stepPollContainer input'));
+            $('#formFinal').append($('.stepPollContainer select'));
+            $('#formFinal').append($('.stepPollContainer checkbox'));
+            $('#formFinal').append($('.stepPollContainer radio'));
+            $('#formFinal').submit();
+            return;
+        }
+
         StepPoll.step += 1;
         StepPoll.RenderStep();
     });
