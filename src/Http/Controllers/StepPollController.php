@@ -110,6 +110,10 @@ class StepPollController extends Controller
 
     public function index($stepClass)
     {
+
+        $stepClass= str_replace("\\","/", $stepClass);
+        $stepClass = basename($stepClass);
+
         $poll = self::GetPollByClass($stepClass);
         if (!$poll)   return redirect()->route("home")->withErrors(["Опрос не найден"]);
 
@@ -120,6 +124,6 @@ class StepPollController extends Controller
             return redirect()->route("home")->withErrors([$isCan]);
         }
 
-        return view('step-poll.page', compact(['poll']));
+        return view('step-poll.page', compact(['poll','stepClass']));
     }
 }

@@ -10,9 +10,9 @@
 <script src="{{ asset('js/pollstep/pollstep.js') }}"></script>
 
 <small class="float-end">Шаг <b class="stepNumber">1</b> / <b class="stepCount">{{$poll->stepCount}}</b></small>
-<span class="pollId" pollId="{{basename(get_class($poll))}}"></span>
+<span class="pollId" pollId="{{$stepClass}}"></span>
 
-<form method="POST" id="formFinal" action="{{ route('poll.complete', basename(get_class($poll))) }}">
+<form method="POST" id="formFinal" action="{{ route('poll.complete', $stepClass) }}">
     @csrf
 </form>
 <div class="stepPollContainer">
