@@ -124,6 +124,7 @@ class StepPollController extends Controller
             return redirect()->route("home")->withErrors([$isCan]);
         }
 
+
         return view('step-poll.page', compact(['poll','stepClass']));
     }
 }

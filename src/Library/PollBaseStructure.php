@@ -18,10 +18,9 @@ class PollBaseStructure
     ];
 
 
-
     public function IsCan(?User $user)
     {
-        if(!$user)return "Доступно только для пользователей";
+        if (!$user) return "Доступно только для пользователей";
         return true;
     }
 
@@ -37,9 +36,12 @@ class PollBaseStructure
      */
     public function RenderStepInputs(int $step)
     {
+
         foreach ($this->GetPropsByStep($step) as $K => $V) {
+
             \MrProperter\Models\MPModel::BuildInputByStruct($K, $V, null);
         }
+
     }
 
     /**
@@ -48,12 +50,15 @@ class PollBaseStructure
     public function GetPropsByStep(int $step)
     {
         $list = [];
+
+
         /**
          * @var  $K
          * @var  PropertyBuilderStructure $V
          */
         foreach ($this->GetSteps()->list as $K => $V) {
 
+            if (!$V->tags) continue;
             if (in_array($step, $V->tags)) {
                 $list[$K] = $V;
             }
