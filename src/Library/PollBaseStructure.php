@@ -9,12 +9,12 @@ use MrProperter\Models\MPModel;
 
 class PollBaseStructure
 {
-    public int $stepCount = 3;
+    public int $stepCount = 0;
 
-    public array $titles = [
+    public array $titles = [/*
         0 => 'Укажите ваш контакт',
         1 => 'Как вы назовете ваш первый проект?',
-        2 => 'Для чего вы используйте',
+        2 => 'Для чего вы используйте',*/
     ];
 
 

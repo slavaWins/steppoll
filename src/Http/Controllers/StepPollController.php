@@ -32,11 +32,14 @@ class StepPollController extends Controller
         /** @var PollBaseStructure $poll */
         $poll = new $stepClass();
 
+        $poll->GetSteps();
+
         return $poll;
     }
 
     public static function ValidatePoll(PollBaseStructure $poll, $stepNumber, $data, $isComplite = false)
     {
+
         $stepNumber = intval($stepNumber);
         if ($stepNumber > $poll->stepCount) return "Ошибка шага";
 
@@ -49,12 +52,17 @@ class StepPollController extends Controller
             $list = $poll->GetPropsByStep($stepNumber);
         } else {
             $list = $poll->GetSteps()->list;
+
         }
+
+
 
         foreach ($list as $K => $prop) {
             $validateRules[$K] = MPModel::RenderValidateRuleByPropertyData($prop, true);
             $validateLabels[$K] = $prop->label ?? $K;
         }
+
+
 
         $validator = Validator::make($data, $validateRules, [], $validateLabels);
 
@@ -124,6 +132,7 @@ class StepPollController extends Controller
             return redirect()->route("home")->withErrors([$isCan]);
         }
 
+        $poll->GetSteps();
 
         return view('step-poll.page', compact(['poll','stepClass']));
     }
