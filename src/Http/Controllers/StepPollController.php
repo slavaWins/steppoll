@@ -123,7 +123,8 @@ class StepPollController extends Controller
         $stepClass = basename($stepClass);
 
         $poll = self::GetPollByClass($stepClass);
-        if (!$poll)   return redirect()->route("home")->withErrors(["Опрос не найден"]);
+        if (!$poll)  abort(404, "Опрос не найден");
+        
 
         $isCan = $poll->IsCan(Auth::user());
         if ($isCan === true) {
