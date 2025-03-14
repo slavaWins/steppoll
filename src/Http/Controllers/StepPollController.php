@@ -124,7 +124,7 @@ class StepPollController extends Controller
 
         $poll = self::GetPollByClass($stepClass);
         if (!$poll)  abort(404, "Опрос не найден");
-        
+
 
         $isCan = $poll->IsCan(Auth::user());
         if ($isCan === true) {
@@ -135,6 +135,10 @@ class StepPollController extends Controller
 
         $poll->GetSteps();
 
-        return view('step-poll.page', compact(['poll','stepClass']));
+        if(view()->exists("steppoll::page-{$stepClass}")) {
+            return view("steppoll::page-{$stepClass}", compact(['poll','stepClass']));
+        }else {
+            return view('steppoll::page', compact(['poll', 'stepClass']));
+        }
     }
 }

@@ -17,6 +17,9 @@ class PollBaseStructure
         2 => 'Для чего вы используйте',*/
     ];
 
+    public string $btnNextName = "Продолжить";
+    public ?string $btnCancelName = null;
+    public string $btnCancelUrl = "/";
 
     public function IsCan(?User $user)
     {
