@@ -23,7 +23,7 @@
         @for($i=0; $i<$poll->stepCount;$i++)
             <form class=" stepPoll stepPoll_{{$i}}" style="@php if($i>0)echo 'display: none;'; @endphp"
                   onsubmit="event.preventDefault(); StepPoll.NextStep(); return false;">
-                <h3> {{$poll->titles[$i]}}</h3>
+                <h3 class="StepNameH3"> {{$poll->titles[$i]}}</h3>
                 {{$poll->RenderStepInputs($i)}}
             </form>
         @endfor
