@@ -21,6 +21,9 @@ class PollBaseStructure
     public ?string $btnCancelName = null;
     public string $btnCancelUrl = "/";
 
+    /** @var bool Включить валидацию на фронте. Если нет, то только бэк будет валидировать. Если да, то валидационные теги при рендери инпутов будут убраны */
+    public bool $isShowFrontendValidation = true;
+
     public function IsCan(?User $user)
     {
         if (!$user) return "Доступно только для пользователей";
@@ -42,6 +45,10 @@ class PollBaseStructure
 
         foreach ($this->GetPropsByStep($step) as $K => $V) {
 
+            if(!$this->isShowFrontendValidation){
+                $V->min = null;
+                $V->max = null;
+            }
             \MrProperter\Models\MPModel::BuildInputByStruct($K, $V, null);
         }
 
