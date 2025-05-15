@@ -7,7 +7,7 @@
 
 @endphp
 
-<script src="{{ asset('js/pollstep/pollstep.js') }}"></script>
+
 
 <div class="poll__{{$stepClass}}">
 
